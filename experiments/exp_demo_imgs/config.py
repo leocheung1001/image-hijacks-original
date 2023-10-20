@@ -129,8 +129,8 @@ def gen_configs() -> List[Tuple[str, Callable[[], Config]]]:
         return [
             Transform(
                 [
-                    cfg.proc_learnable_image,
-                    lambda c: cfg.set_input_image(c, EIFFEL_IMAGE),
+                    cfg.proc_patch_static,
+                    lambda c: cfg.set_input_image(c, EXPEDIA_IMAGE),
                 ],
                 "pat_full",
             )
@@ -143,7 +143,7 @@ def gen_configs() -> List[Tuple[str, Callable[[], Config]]]:
         ]
 
     def sweep_lr(cur_keys: List[str]) -> List[Transform]:
-        sweep_lrs = ["3e-2"]
+        sweep_lrs = ["3"]
         return [
             Transform(lambda c, lr=lr: cfg.set_lr(c, float(lr)), f"lr_{lr}")
             for lr in sweep_lrs
